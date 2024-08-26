@@ -1,5 +1,8 @@
 import { useState, useCallback, useEffect, useRef} from 'react'
 
+import {ShootingStarsAndStarsBackgroundDemo} from './components/shootingStarBackground/ShootingStarsAndStarsBackgroundDemo'
+import {TextCard} from './components/textReveal/TextCard'
+
 function App() {
   let [length, setLength] = useState(8);
   let [isContainNumber, setIsContainNumber] = useState(false);
@@ -33,7 +36,7 @@ function App() {
 
   // we can optimize this also
   const copyPassToClipBoard = useCallback(() => {
-    // we can know a lot thing about passwor through password reference
+    // we can know a lot thing about password through password reference
     // passwordRef
     passwordRef.current?.select(); // shows blue background sign that pass has been selected
     // ? means optionally select as value could be zero
@@ -52,33 +55,43 @@ function App() {
 
   return (
     <>
-        <div className='h-screen w-screen bg-one flex flex-wrap flex-col justify-center items-center gap-3'>
-            <h1 className='h-max w-max bg-two hover:bg-three rounded-lg text-4xl'>Password Generator</h1>
-            <div className='h-max min-w-9 bg-four hover:bg-five rounded-lg'>
-                <input type="text" value={password} placeholder='password' readOnly ref={passwordRef} className='rounded-lg p-2 m-2 bg-one w-80' />
-                {/* <button className='h-10 w-10 rounded-lg bg-blue-700' onClick={copyPassToClipBoard}>Copy</button> */}
-                <button
+      <div className="relative h-screen w-screen flex flex-wrap items-center justify-center">
+
+        <div className="absolute inset-0 z-0">
+          <ShootingStarsAndStarsBackgroundDemo />
+        </div>
+
+        <div className='flex flex-wrap flex-col h-[800px]'>
+          <div className='h-[50px] w-[560px]'>
+            <TextCard />
+          </div>
+
+          <div className='relative z-10 h-[100px] w-[560px] bg-four rounded-lg flex flex-wrap'>
+              <div>
+                <input type="text" value={password} placeholder='password' readOnly ref={passwordRef} className='rounded-md p-2 bg-one h-12 w-[450px] text-slate-400' />
+                <button 
                   onClick={() => {
                     copyPassToClipBoard();
                     handleClick(); 
                   }} 
-                  className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">{buttonText}</button>
-            </div>
-            <div>
-                <div>
-                    <input type="range" min={6} max={100} className='cursor-pointer bg-two' onChange={(e) => {setLength(e.target.value)}} />
-                    <label>Length: {length}</label>
-                </div>
-                <div>
-                    <input type="checkbox" defaultChecked={isContainNumber} onChange={() => {setIsContainNumber((prev) => !prev)}} />
-                    <label>Numbers</label>
-                </div>
-                <div>
-                    <input type="checkbox" defaultChecked={isContainSpecialCharacter} onChange={() => {setIsContainSpecialCharacter((prev) => !prev)}} />
-                    <label>characters</label>
-                </div>
-            </div>
+                  className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                  {buttonText}
+                </button>
+              </div>
+              <div>
+                <label className='text-slate-400'>Length:{length}</label>
+                <input type="range" min={6} max={100} className='m-2 cursor-pointer bg-slate-400' onChange={(e) => {setLength(e.target.value)}} />
+
+                <input className='m-2 bg-slate-400' type="checkbox" defaultChecked={isContainNumber} onChange={() => {setIsContainNumber((prev) => !prev)}} />
+                <label className='text-slate-400'>Numbers</label>
+
+                <input className='m-2 bg-slate-400' type="checkbox" defaultChecked={isContainSpecialCharacter} onChange={() => {setIsContainSpecialCharacter((prev) => !prev)}} />
+                <label className='text-slate-400'>characters</label>
+              </div>
+          </div>
         </div>
+
+      </div>
     </>
   )
 }

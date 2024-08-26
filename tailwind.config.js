@@ -7,12 +7,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        one: '#CEDEF2',
+        one: '#02070D',
         two: '#B4C4D9',
         three: '#99AABF',
-        four: '#8090A6',
-        five: '#68788C'
-      }
+        four: '#122A40',
+        five: '#68788C',
+      },
+      animation: {
+        shimmer: "shimmer 2s linear infinite",
+      },
+      keyframes: {
+        shimmer: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
+        },
+      },
     },
   },
   plugins: [],
