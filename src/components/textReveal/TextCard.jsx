@@ -60,16 +60,15 @@ export const TextCard = () => {
   return (
     
     <div
-      className="flex items-center justify-center bg-[#0E0E10] h-[40rem] rounded-2xl w-full">
+      className="flex flex-wrap items-center justify-center bg-[#0E0E10] h-[40rem] rounded-2xl w-full">
       <TextRevealCard text="You know the business" revealText="Code - Satyajit Patel..">
         <TextRevealCardTitle>
           Sometimes, you just need to Create a strong password.
         </TextRevealCardTitle>
 
         <TextRevealCardDescription>
-        <div className='w-[600px] bg-four rounded-lg grid sm:grid-rows-3 gap-2 h-min justify-center'>
-              <div className='flex m-2 p-2 gap-2 h-min'>
-                <input className='rounded-md h-12 w-[450px] text-slate-400 bg-one' type="text" value={password} placeholder='password' readOnly ref={passwordRef}  />
+              <div className='flex flex-wrap m-2 p-2 gap-2'>
+                <input className='p-4 rounded-md h-12 text-slate-400 bg-one' type="text" value={password} placeholder='password' readOnly ref={passwordRef}  />
                 <button 
                   onClick={() => {
                     copyPassToClipBoard();
@@ -80,23 +79,20 @@ export const TextCard = () => {
                 </button>
               </div>
 
-              <div className='flex h-min justify-start m-2 p-2 gap-4 items-center'>
+              <div className='flex flex-wrap h-min justify-start m-2 p-2 gap-4 items-center'>
                 <div className='flex items-center gap-2 bg-one'>
                   <input className='cursor-pointer bg-slate-400' type="range" min={6} max={100} onChange={(e) => {setLength(e.target.value)}} />
                   <label className='text-slate-400'>Length: {length}</label>
                 </div>
-                
                 <div className='flex items-center gap-2 bg-one'>
                   <input className='bg-slate-400' type="checkbox" defaultChecked={isContainNumber} onChange={() => {setIsContainNumber((prev) => !prev)}} />
                   <label className='text-slate-400'>Nums</label>
                 </div>
-                
                 <div className='flex items-center gap-2 bg-one'>
                   <input className='bg-slate-400' type="checkbox" defaultChecked={isContainSpecialCharacter} onChange={() => {setIsContainSpecialCharacter((prev) => !prev)}} />
                   <label className='text-slate-400'>Chars</label>
                 </div>
               </div>
-          </div>
           </TextRevealCardDescription>
 
 
