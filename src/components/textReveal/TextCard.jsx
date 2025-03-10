@@ -60,7 +60,7 @@ export const TextCard = () => {
   return (
     
     <div
-      className="flex flex-wrap items-center justify-center bg-[#0E0E10] h-[40rem] rounded-2xl w-full">
+      className="flex flex-wrap items-center justify-center bg-[#0E0E10] h-screen w-full">
       <TextRevealCard text="You know the business" revealText="Code - Satyajit Patel..">
         <TextRevealCardTitle>
           Sometimes, you just need to Create a strong password.
